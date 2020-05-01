@@ -1,5 +1,5 @@
 <template>
-  <div class="cnv">
+  <div>
     <canvas ref="myChart" width="400" height="400"></canvas>
   </div>
 </template>
@@ -80,7 +80,7 @@ function paintChart(ctx, labels, datasets) {
 export default {
   name: "ChartC",
   props: {
-    chartData: Object
+    chartData: Array
   },
   methods: {
     printChart(data) {
@@ -89,7 +89,7 @@ export default {
     }
   },
   mounted() {
-        this.printChart(Object);
+    this.printChart(this.chartData);
   }
 };
 </script>
@@ -98,6 +98,6 @@ export default {
 <style scoped>
 .cnv {
   width: 1500px;
-  height: 800px;
+  height: 300px;
 }
 </style>
