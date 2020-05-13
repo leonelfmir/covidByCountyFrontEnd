@@ -11,21 +11,24 @@
 <script>
 import axios from "axios";
 import ChartC from "./ChartC.vue";
-const apiUrl = "http://localhost:3030/csv/"; //Miami-Dade";
+const apiUrl = "http://localhost:3030/csv/county/";
 
 export default {
   name: "Charts",
   components: {
     ChartC
   },
+  props: {
+    counties: Array
+  },
   data() {
     return {
       csvData: null,
-      countys: ['Miami-Dade', 'Broward']
+      // countys: ['Miami-Dade', 'Broward']
     };
   },
   mounted() {
-    const proms = this.countys.map(c => {
+    const proms = this.counties.map(c => {
       const url = `${apiUrl}${c}`;
       return axios.get(url).then(response => response.data);
     });

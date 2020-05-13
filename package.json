@@ -13,7 +13,8 @@
     "chartjs": "^0.3.24",
     "core-js": "^3.6.4",
     "neat-csv": "^5.2.0",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-multiselect": "^2.1.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",

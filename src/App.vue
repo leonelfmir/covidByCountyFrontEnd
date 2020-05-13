@@ -1,18 +1,38 @@
 <template>
   <div id="app">
-    <Charts />
+    <CountySelection @selection="CountySelection" />
+    <div v-if="anyCountieSelecte">
+      <Charts :counties="countiesSelected" />
+    </div>
   </div>
 </template>
 
 <script>
-import Charts from './components/Charts.vue'
+import Charts from "./components/Charts.vue";
+import CountySelection from "./components/CountySelection.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Charts
+    Charts,
+    CountySelection
+  },
+  data() {
+    return {
+      countiesSelected: []
+    };
+  },
+  methods: {
+    CountySelection(selection) {
+      this.countiesSelected = selection;
+    }
+  },
+  computed: {
+    anyCountieSelecte() {
+      return this.countiesSelected.length > 0;
+    }
   }
-}
+};
 </script>
 
 <style>
