@@ -1,39 +1,26 @@
 <template>
   <div>
-    <div v-if="csvData !== null">
-      <div v-for="csv in csvData" :key="csv" >
-        <ChartC :chart-data="csv" class="cnv"/>
-      </div>
+    <div v-for="county in counties" :key="county">
+      <ChartSmart :county="county" class="cnv" />
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import ChartC from "./ChartC.vue";
-const apiUrl = "http://localhost:3030/csv/county/";
+import ChartSmart from "./ChartSmart.vue";
 
 export default {
   name: "Charts",
   components: {
-    ChartC
+    ChartSmart
   },
   props: {
     counties: Array
   },
   data() {
-    return {
-      csvData: null,
-      // countys: ['Miami-Dade', 'Broward']
-    };
+    return {};
   },
-  mounted() {
-    const proms = this.counties.map(c => {
-      const url = `${apiUrl}${c}`;
-      return axios.get(url).then(response => response.data);
-    });
-    Promise.all(proms).then(v => (this.csvData = v));
-  }
+  mounted() {}
 };
 </script>
 

@@ -7,7 +7,7 @@
 <script>
 import Chart from "chart.js";
 
-function createChart(ctx, data) {
+function createChart(ctx, data, title) {
   const labels = data.map(d => d.Updated);
   const confirmed = data.map(d => d.Confirmed);
   let incr = [0];
@@ -52,10 +52,10 @@ function createChart(ctx, data) {
       backgroundColor: "rgb(24, 204, 255)"
     }
   ];
-  paintChart(ctx, labels, datasets);
+  paintChart(ctx, labels, datasets, title);
 }
 
-function paintChart(ctx, labels, datasets) {
+function paintChart(ctx, labels, datasets, title) {
   new Chart(ctx, {
     type: "bar",
     data: {
@@ -63,6 +63,10 @@ function paintChart(ctx, labels, datasets) {
       datasets
     },
     options: {
+      title: {
+        display: true,
+        text: title
+      },
       maintainAspectRatio: false,
       scales: {
         yAxes: [
@@ -80,16 +84,17 @@ function paintChart(ctx, labels, datasets) {
 export default {
   name: "ChartC",
   props: {
-    chartData: Array
+    chartData: Array,
+    title: String
   },
   methods: {
-    printChart(data) {
+    printChart(data, title) {
       const ctx = this.$refs.myChart;
-      createChart(ctx, data);
+      createChart(ctx, data, title);
     }
   },
   mounted() {
-    this.printChart(this.chartData);
+    this.printChart(this.chartData, this.title);
   }
 };
 </script>

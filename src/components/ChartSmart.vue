@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="csvData !== null">
-      <ChartC :chart-data="csv" class="cnv" />
+      <ChartC :chart-data="csvData" :title="county" />
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
     };
   },
   mounted() {
-    const url = `${apiUrl}${c}`;
+    const url = `${apiUrl}${this.county}`;
     axios.get(url).then(response => (this.csvData = response.data));
   }
 };
